@@ -1,0 +1,501 @@
+@import "reset";
+@import (inline) "jquery-ui.min.css";
+@import "icons";
+@import "badge";
+
+html{
+	height: 100%;
+}
+
+body{
+	height: 100%;
+	min-height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+h1{
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.content{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: stretch;
+	height: 100%;
+	transition: all .3s linear;
+
+	@media screen and (max-width: 640px) {
+        flex-direction: column;
+        .nav{
+            flex: 0 0 0;
+        }
+    }
+
+    &.blur{
+    	filter: blur(2px);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+.nav{
+	flex: 0 0 150px;
+	background: #333;
+	color: #DDD;
+	font-size: 14px;
+    font-weight: 100;
+}
+
+.nav__ul{
+	padding: 20px;
+}
+
+.nav__ul__list{
+	padding: 5px;
+	cursor: pointer;
+}
+.nav__ul__list__link{
+    color: #FFF;
+    text-decoration: none;
+
+    &.active{
+        font-weight: 600;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+.view{
+	width: 100%;
+    background: #EEE;
+	overflow: auto;
+}
+
+
+.header{
+    background: #999;
+    padding: 20px;
+    // height: 100px;
+}
+
+// list
+.list__row{
+    position: relative;
+    display: flex;
+
+    // padding: 10px 15px;
+    // align-items: center;
+    align-items: stretch;
+    border-bottom: solid 1px #ccc;
+    background: #fff;
+    // padding-right: 110px;
+    // cursor: pointer;
+    // &:last-child{
+    //     border-bottom: none;
+    // }
+    &[data-type="null"]{
+        background: #eee;
+        &>*{
+            opacity: .2;
+        }
+    }
+    &:hover{
+        z-index: 999;
+    }
+}
+.list__col{
+    margin-top: auto;
+    margin-bottom: auto;
+    // display: flex;
+    // align-items: center;
+    padding: 10px;
+    // background: red;
+}
+.list__users{
+    display: flex;
+    align-items: center;
+    .icon{
+        margin: 0 10px;
+        color: #333;
+    }
+}
+.list__infos{
+    padding-left: 10px;
+    text-align: left;
+}
+.list__cat{
+    color: #333;
+    font-size: 25px;
+}
+.list__date{
+    color: #999;
+    font-size: 12px;
+}
+.list__desc{
+    color: #999;
+    font-size: 12px;
+}
+.list__refund{
+    display: none;
+    margin-left: auto;
+    color: #333;
+    text-align: right;
+    [data-type="null"] &{
+        display: block;
+    }
+}
+.list__amount{
+    margin-left: auto;
+    color: #999;
+    font-size: 30px;
+    font-weight: 300;
+    text-align: right;
+    white-space: nowrap;
+    padding-right: 10px;
+    [data-type="null"] &{
+        display: none;
+    }
+    [data-type="debit"] &{
+        color: #b00;
+        &:before{
+            content: '- ';
+        }
+    }
+    [data-type="credit"] &{
+        color: #090;
+        &:before{
+            content: '+ ';
+        }
+    }
+}
+
+
+
+.list__button{
+    width: 100px;
+    // height: 100%;
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+
+
+    margin: 0;
+    padding: 0;
+
+    button{
+        width: 100%;
+        height: 100%;
+        color: #999;
+        background: #FFF;
+        background: transparent;
+        border: none; 
+        font-size: 16px;
+        outline:none;
+        cursor: pointer;
+        border-left: solid 1px #CCC;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dialog{
+	z-index: 99999;
+    // display: none;
+	visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	opacity: 0;
+	transition: all .3s linear;
+    // overflow: auto;
+}
+
+.back{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,38,64,0.5);
+}
+
+.dialog[data-show="true"]{
+    display: block;
+	visibility: visible;
+	opacity: 1;
+    .dialog__window{
+        transform: translateY(0px);
+    }
+}
+
+
+.dialog__wrap{
+    position: relative;
+    height: 100%;
+    overflow: auto;
+    padding: 20px; 
+    display: flex;
+}
+
+    .dialog__window{
+        margin: auto;
+        overflow: hidden;
+        width: 100%;
+        max-width: 500px;
+        padding: 30px;
+        background: #FFF;
+        border-radius: 5px;
+        transform: translateY(-30px);
+        transition: all 0.3s ease-out;
+        // opacity: 0;
+
+        /*&[data-show="true"]{
+            transform: translateY(0px);
+            opacity: 1;
+        }*/
+    }
+
+/*.dialog__loading[data-show="false"]{
+    display: none;
+}
+
+.dialog__window[data-show="false"]{
+    display: none;
+}*/
+
+    // .dialog.show .dialog__window{
+        // transform: translateY(0%);
+	// }
+
+    .dialog__label{
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    input[type="text"],
+    input[type="submit"],
+    input[type="button"],
+    select,
+    textarea{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding: 8px;
+        max-width: 100%;
+        width: 100%;
+        font-size: 17px;
+        background: #FFF;
+        border: solid 1px #DDD;
+        // border-bottom: solid 1px #CCC;
+        font-weight: 100;
+        color: #333;
+        border-radius: 4px;
+        outline:none;
+        box-shadow: 0px 2px 3px #EEE inset;
+        &:hover{
+            border: solid 1px #BBB;
+        }
+        &:focus{
+            border: solid 1px #0CC;
+        }
+    }
+    .dialog select{
+        cursor: pointer;
+        background: #FFF url(images/test.png) no-repeat center right;
+        background-size: 20px;
+        background-origin: content-box;
+    }
+
+    .dialog input[type="submit"],
+    .dialog input[type="button"]{
+        color: #FFF;
+        background: #23d160;
+        border: none;
+        box-shadow: none;
+        margin: 0 4px;
+        margin-bottom: 5px;
+        &:first-child{
+            margin-left: 0;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+        &.alert{
+            background: #A00;
+        }
+        &:hover{
+            border: none;
+        }
+        &:focus{
+            border: none;
+        }
+    }
+
+.dialog__submit{
+    display: flex;
+    
+    @media screen and (max-width: 720px) {
+        display: block;
+    }
+}
+
+.dialog .ui-datepicker {
+    width: 100%;
+}
+
+
+.disabled &{
+    opacity: 0.3;
+    & *{cursor: default;}
+}
+
+
+
+
+
+
+/*.dialog[data-show="false"] form > div{
+        transform: translateY(-100px);
+        opacity: 0;
+        transition: all 0.3s ease-out;
+}
+
+.dialog[data-show="true"] form > div:nth-child(1){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0s;
+}
+
+.dialog[data-show="true"] form > div:nth-child(2){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.02s;
+}
+
+.dialog[data-show="true"] form > div:nth-child(3){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.04s;
+}
+
+
+.dialog[data-show="true"] form > div:nth-child(4){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.06s;
+}
+
+
+.dialog[data-show="true"] form > div:nth-child(5){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.08s;
+}
+
+
+.dialog[data-show="true"] form > div:nth-child(6){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.1s;
+}
+
+
+.dialog[data-show="true"] form > div:nth-child(7){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.12s;
+}
+
+
+.dialog[data-show="true"] form > div:nth-child(8){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.14s;
+}
+
+
+.dialog[data-show="true"] form > div:nth-child(9){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.16s;
+}
+
+
+.dialog[data-show="true"] form > div:nth-child(10){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.18s;
+}
+
+
+.dialog[data-show="true"] form > div:nth-child(11){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.2s;
+}
+
+
+.dialog[data-show="true"] form > div:nth-child(12){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.22s;
+}
+
+
+.dialog[data-show="true"] form > div:nth-child(13){
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.3s ease-out 0.24s;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+

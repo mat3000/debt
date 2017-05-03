@@ -1,0 +1,58 @@
+<div>
+
+    <div class="header" >
+        
+        <h1>{{Users.current.name}},</h1>
+
+        <p>{{Users.total(Users.current.id)}}</p>
+
+        <div ng-bind-html="Users.totalByUser(Users.current.id)"></div>
+
+
+    </div>
+
+
+    <div class="list__row" data-type="{{debt.type}}" ng-repeat="debt in Users.debts | filterByUser:Users.current.id" >
+
+         <div class="list__col list__users">
+            <div class="badge-user-group-compressed">
+                <div class="badge-user" ng-repeat="user in debt.user_debit | reorderUser:Users.current.id:debt.id_user" style="background: {{Users.users.getColorById(user.id_user)}}" data-letter="{{Users.users.getLetterById(user.id_user)}}" data-refunded="{{user.refund ? true : false}}" >
+                    <div class="tooltips">- {{user.sum}}€<br/>{{user.refund}}</div>
+                </div>
+            </div>
+            <span class="icon icon-right-open-big"></span>
+            <div class="badge-user-group-compressed">
+                <div class="badge-user" data-letter="{{Users.users.getLetterById(debt.id_user)}}" style="background: {{Users.users.getColorById(debt.id_user)}};">
+                    <div class="tooltips">+ {{debt.sum}}€</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="list__col list__infos">
+            <div class="list__cat" >{{Users.categories.getLabelById(debt.category_id)}}</div>
+            <div class="list__date">{{debt.date}}</div>
+            <div class="list__desc">{{debt.description}}</div>
+        </div>
+
+        <div class="list__col list__refund">
+            <div class="list__cat">{{Users.getRefundedSum(debt)}}€ remboursé</div>
+            <div class="list__date">le {{debt.refunded}}</div>
+        </div>
+
+        <div class="list__col list__amount">{{Users.getTotal(debt)}}€</div>
+
+        <div class="list__col list__button">
+            <button class="icon icon-pencil" ng-click="Dialog.show('update', debt)" ></button>
+            <button class="icon icon-check" ng-click="Dialog.show('date', debt)" ng-show="debt.type=='debit'"></button>
+            <button class="icon icon-cancel" ng-click="" ng-show="debt.type!='debit'"></button>
+            <!-- <button class="icon" ng-click="" ng-show="debt.type!='debit'"></button> -->
+        </div>
+
+    </div>
+
+</div>
+
+<div ng:dialog ></div>
+
+
+

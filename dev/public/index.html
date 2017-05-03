@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr_FR">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>dette privée</title>
+
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" >
+    
+    <!-- build:mycss styles/min.css -->
+    <link rel="stylesheet" href="styles/bundle.css" />
+    <!-- endbuild -->
+   
+    <!-- build:mylog -->
+    <script src="http://log.matdev.fr/mylog.dev-6.0.0.js"></script>
+    <!-- endbuild -->
+    
+</head>
+<body ng-app="app" ng-controller="MainCtrl as Main" >
+
+    <div class="content">
+
+        <div class="nav" ng-controller="UsersCtrl as Users" >
+
+            <div class="nav__ul" >
+
+                <div class="nav__ul__list"><a href="#!/" class="nav__ul__list__link">home</a></div>
+
+                <div class="nav__ul__list" ng-click="Dialog.show('new')" >Ajouter</div>
+
+                <!-- <div class="nav__ul__list"><a href="#!/history" class="nav__ul__list__link">Historique</a></div> -->
+
+                <!-- <div class="nav__ul__list" >
+                    <a href="#!/all" class="nav__ul__list__link">all</a>
+                </div> -->
+
+                <div class="nav__ul__list" ng-repeat="user in Users.users | orderBy: '+name'">
+                    <a href="#!/{{user.name}}" class="nav__ul__list__link" ng-active ng-bind="::user.name" ></a>
+                </div>
+                
+            </div>
+
+        </div>
+
+        <div class="view" ng-view ></div>
+
+    </div>
+
+    <!-- build:js js/min.js type="text/javascript" -->
+    <script type="text/javascript" src="js/modules/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="js/modules/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/modules/jquery/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/modules/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/modules/jquery-ui/date.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/DialogDirectives.js"></script>
+    <script type="text/javascript" src="js/UserServices.js"></script>
+    <script type="text/javascript" src="js/UserCtrl.js"></script>
+     <!-- endbuild -->
+
+</body>
+</html>
+
+
+
+
+

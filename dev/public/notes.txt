@@ -1,0 +1,48 @@
+
+
+
+
+
+id_credit : 94,
+
+id_user : 1,
+
+sum : 755,
+
+date : "2017-04-12",
+
+category_id : 2,
+
+description : "okokoo",
+
+user_debit : [
+
+	0 : {
+
+		id_debit : 89,
+
+		id_user : 3,
+
+		sum : 754,
+
+		refund : "2017-04-12"
+
+	}
+
+]
+
+
+id_credit : 94,
+id_user : 1,
+sum : 755,
+date : "2017-04-12",
+category_id : 2,
+description : "okokoo",
+user_debit : [
+	0 : {
+		id_debit : 89,
+		id_user : 3,
+		sum : 754,
+		refund : "2017-04-12"
+	}
+]

@@ -1,0 +1,19 @@
+<div class="dialog" data-show="{{Dialog.status==='visible'}}" >
+
+    <div class="dialog__wrap" >
+    	
+    	<div class="back dialog-close" ng-click="Dialog.hide()"></div>
+
+	    <!-- <div class="dialog__window" data-show="{{Dialog.loaded}}" > -->
+	    <div class="dialog__window" >
+
+			<!-- <pre>{{Users.newDebt | json}}</pre> -->
+
+	        <!-- <div ng-if="Dialog.view" ng-include="'partials/dialog/' + Dialog.view + '.php'" onload="Dialog.isLoaded()" >loading</div> -->
+	        <div ng-if="Dialog.view" ng-include="'partials/dialog/' + Dialog.view + '.html'" ></div>
+
+	    </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,15 @@
+<form ng-submit="Users.newDebt.paidDebt()">
+
+    <div>
+        <p>quand ?</p>
+        <input type="text" name="date" ng-model="Users.newDebt.date_refunded" ng-required="true" autocomplete="off" ui-date="Debt.dateOptions" ng-disabled="true"/>
+        <div ng-model="Users.newDebt.date_refunded" ui-date="Debt.dateOptions"></div>
+    </div>
+
+    <br />
+
+    <div class="dialog__submit">
+        <input type="submit" value="VALIDER" />
+    </div>
+
+</form>
